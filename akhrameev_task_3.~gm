@@ -1,9 +1,12 @@
-* 09.2014 Akhrameev Pavel
-* group 513 CMC MSU
-* Practicum
-* Task 3
-* Performance
-*
+$title Performance (task 3)
+$ontext
+09.2014 Akhrameev Pavel
+group 513 CMC MSU
+Practicum
+Task 3
+Performance
+$offtext
+
 sets
 h / 0 * 100 /
 scalars
@@ -17,6 +20,8 @@ x_T_0    /700.0/
 x_T_1    /900.0/
 dx_T_0   /150.0/
 dx_T_1   /20.0/
+
+zero     /0.0/
 
 deltaH
 maxH;
@@ -65,9 +70,11 @@ x2.fx(h)$(ord(h) = card(h)) =  x_T_1;
 x3.fx(h)$(ord(h) = card(h)) = dx_T_0;
 x4.fx(h)$(ord(h) = card(h)) = dx_T_1;
 
+diffSum.fx(h)$(ord(h) = 1) = zero;
+
 model speed /all/;
 
-solve speed using dnlp minimizing diffSum;
+solve speed using dnlp minimizing diffSum('1');
 
 Parameter PLOT_1 data for plotter;
 PLOT_1("x1",h,"y")=x1.l(h);

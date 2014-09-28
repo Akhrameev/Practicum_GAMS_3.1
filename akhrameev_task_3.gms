@@ -37,11 +37,17 @@ eq_x4(h)
 
 eq_u(h);
 
-eq_x1(h).. x1(h) =e= x1(h-1) + h*x3(h-1);
-eq_x2(h).. x2(h) =e= x2(h-1) + h*x4(h-1);
-eq_x3(h).. x3(h) =e= x3(h-1) + h*(-alpha * eDist(x3(h-1),x4(h-1)) *
+eq_x1(h-1).. x1(h) =e= x1(h-1) + h*x3(h-1);
+eq_x2(h-1).. x2(h) =e= x2(h-1) + h*x4(h-1);
+eq_x3(h-1).. x3(h) =e= x3(h-1) + h*(-alpha * eDist(x3(h-1),x4(h-1)) *
                          x3(h-1) + rho*u1(h-1) );
-eq_x4(h).. x4(h) =e= x4(h-1) + h*(-alpha * eDist(x3(h-1),x4(h-1)) *
+eq_x4(h-1).. x4(h) =e= x4(h-1) + h*(-alpha * eDist(x3(h-1),x4(h-1)) *
                          x4(h-1) + rho*u2(h-1) );
 
+eq_u(h-1)..  eDist(u1(h-1),u2(h-1)) =l= 1;
+
+x1.fx(h)$(ord(h) = 1)=x_0_0;
+x2.fx(h)$(ord(h) = 1)=x_0_1;
+x3.fx(h)$(ord(h) = 1)=dx_0_0;
+x4.fx(h)$(ord(h) = 1)=dx_0_1;
 
